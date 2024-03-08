@@ -1,0 +1,31 @@
+.sector
+value,0
+link,0
+num1,3
+num2,2
+num3,0
+num4,2
+.text
+LOADA link,R1
+LOAD  num,R2
+JAL createList
+HALT
+
+CreateList:
+LOAD LINK,R3
+LOAD num2,R4
+
+createNode
+ADDI R4,R4,1
+LOAD num3,R7
+LOAD num4,R8
+ECALL
+
+STORE num2,R15
+ADD R5,R15,R0
+ADD R6,R15,R0
+ADDI R6,R15,1
+CMP R4,R2
+JNS createNode
+RET  
+
