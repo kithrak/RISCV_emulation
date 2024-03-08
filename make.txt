@@ -1,0 +1,36 @@
+# Compiler settings
+CXX := g++
+CXXFLAGS := -std=c++11 -Wall -Wextra
+INCLUDES := -Iinc
+
+# Directories
+SRCDIR := src
+INCDIR := inc
+BUILDDIR := build
+TARGET := my_program
+
+# Source and object files
+SRCS := $(wildcard $(SRCDIR)/*.cpp)
+OBJS := $(patsubst $(SRCDIR)/%.cpp,$(BUILDDIR)/%.o,$(SRCS))
+
+# Main target
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $^ -o $@
+
+# Rule to build object files
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp | $(BUILDDIR)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+# Create build directory if it doesn't exist
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
+
+# Clean rule
+clean:
+	rm -rf $(BUILDDIR) $(TARGET)
+
+# PHONY targets to avoid conflicts with file names
+.PHONY: all clean
+
+# Default target
+all: $(TARGET)

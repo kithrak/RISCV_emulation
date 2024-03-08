@@ -1,0 +1,16 @@
+.sector
+num1,10
+num2,20
+.text 
+JMP _add
+_next:
+LOAD num1,R0
+LOAD num1,R2
+CMP R0,R2
+JS _total
+_add:
+LOAD num2,R1
+JMP _next
+_total:
+ADD R2,R1,R0
+HALT

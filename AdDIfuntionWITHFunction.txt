@@ -1,0 +1,17 @@
+.sector
+num1,10
+num2,20
+.text 
+
+LOAD num1,R3
+JAL _add
+HALT
+
+_add:
+LOAD num2,R1
+JAL _next
+RET
+
+_next:
+ADDI R2,R1,100
+RET

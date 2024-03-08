@@ -1,0 +1,27 @@
+.sector
+num1,7
+num2,1
+num3,0
+num4,100
+.text
+LOAD num1,R0
+LOAD num2,R1
+LOAD num2,R2
+LOAD num3,R3
+LOAD num2,R5
+LOAD num3,R6
+_outerLoop:
+ADD R1,R2,R6
+ADD R3,R3,R5
+CMP R0,R3
+JS _done
+LOAD num3,R4
+_innerLoop: 
+CMP R4,R3
+JS _outerLoop
+ADD R2,R2,R1
+ADD R4,R4,R5
+JMP _innerLoop
+_done:
+STORE R2,num4
+HALT
