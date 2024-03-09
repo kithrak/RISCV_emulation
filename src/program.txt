@@ -15,7 +15,7 @@ CreateList:
 LOAD LINK,R3
 LOAD num2,R4
 
-createNode
+createNode:
 ADDI R4,R4,1
 LOAD num3,R7
 LOAD num4,R8
